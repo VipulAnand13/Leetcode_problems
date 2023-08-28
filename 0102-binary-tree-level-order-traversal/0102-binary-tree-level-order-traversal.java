@@ -28,22 +28,37 @@ class Solution {
         while(!q.isEmpty()){
             TreeNode cur= q.poll();
             
-            if(cur!= null){
-                list.add(cur.val);
-                if(cur.left!=null) q.add(cur.left);
-                if(cur.right!=null) q.add(cur.right);
-             }
+//             if(cur!= null){
+//                 list.add(cur.val);
+//                 if(cur.left!=null) q.add(cur.left);
+//                 if(cur.right!=null) q.add(cur.right);
+//              }
             
-            else{
+//             else{
+//                 //q.add(null);
+//                 finalList.add(list);
+//                 // the next two lines added and first line commented but both worked. Just doing to improve time
+//                 if(q.isEmpty()) return finalList; 
+//                 q.add(null);
+//                 list= new ArrayList<Integer>();
+//             }
+             if(cur== null){
                 //q.add(null);
                 finalList.add(list);
                 // the next two lines added and first line commented but both worked. Just doing to improve time
                 if(q.isEmpty()) return finalList; 
                 q.add(null);
                 list= new ArrayList<Integer>();
+                
+             }
+            
+            else{
+                list.add(cur.val);
+                if(cur.left!=null) q.add(cur.left);
+                if(cur.right!=null) q.add(cur.right);
             }
             
-           // if(cur==null && q.peek()==null) break;
+            //if(cur==null && q.peek()==null) break;
         }
         return finalList;
     }
