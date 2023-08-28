@@ -29,14 +29,17 @@ class Solution {
             TreeNode cur= q.poll();
             
             if(cur!= null){
+                list.add(cur.val);
                 if(cur.left!=null) q.add(cur.left);
                 if(cur.right!=null) q.add(cur.right);
-                list.add(cur.val);
-            }
+             }
             
             else{
-                q.add(null);
+                //q.add(null);
                 finalList.add(list);
+                // the next two lines added and first line commented but both worked. Just doing to improve time
+                if(q.isEmpty()) return finalList; 
+                q.add(null);
                 list= new ArrayList<Integer>();
             }
             
