@@ -61,23 +61,20 @@ class Solution {
     public static void convertToWave(int n, int[] a) {
         // code here
         int temp=0;
-         if(n==2) {
-             temp= a[0];
-             a[0]=a[1];
-             a[1]=temp;
-         }
+         if(n==2) swap(a,0, 1);
+            
          if(n>2){
-            int count=0;
             for(int i=0;i<=n-1;i++){
 
-                if(i%2==1){
-                    temp=a[i-1];
-                    a[i-1]=a[i];
-                    a[i]=temp;
-                }
-
-                }
+                if(i%2==1) swap(a, i,i-1);
             }
+        }
+    }
+    
+    public static void swap( int[] a,int i, int j){
+             int temp= a[i];
+             a[i]=a[j];
+             a[j]=temp;
     }
 }
         
