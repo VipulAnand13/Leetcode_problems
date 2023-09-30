@@ -10,26 +10,29 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode result= new ListNode(0);
-        int carry=0;
-        ListNode ans= additionOf2LL(l1,l2,result,carry);
-        return ans;
-    }
-    static ListNode additionOf2LL(ListNode l1,ListNode l2,ListNode result,int carry){
+        ListNode dummy=null;
+        ListNode head=null;
         int sum=0;
-        if(l1== null && l2==null) {
-            if(carry!=0) result.next= new ListNode(carry);
-            return result;
+        int carry=0;
+        while(l1!=null || l2!=null){
+            if(l1==null) sum=l2.val+carry;
+            else if(l2== null) sum= l1.val+carry;
+            else sum=l1.val + l2.val + carry;
+            if(dummy==null) {
+                dummy=new ListNode(sum%10);
+                head=dummy;
+            }
+            else{
+                 dummy.next=new ListNode(sum%10);
+                dummy=dummy.next;
+            }
+            carry=sum/10;
+            sum=0;
+            if(l1!=null) l1=l1.next;
+            if(l2!=null) l2=l2.next;
+           
         }
-        if(l1 !=null) sum +=l1.val;
-        if(l2 !=null) sum +=l2.val;
-        sum += carry;
-        result.next= new ListNode(sum%10);
-        result=result.next;
-        carry= sum/10;
-        if(l1== null) additionOf2LL(l1, l2.next, result, carry);
-        else if(l2==null) additionOf2LL(l1.next, l2, result, carry);
-        else additionOf2LL(l1.next, l2.next, result, carry);
-        return result;
+        if(carry>0) dummy.next=new ListNode(carry);
+        return head;
     }
 }
